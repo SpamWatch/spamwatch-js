@@ -15,10 +15,7 @@ class Client {
             },
         });
         this._instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-        this.getSelf().then(_token => {
-            this._token = token;
-            this.permission = this._token.permission;
-        });
+        this._token = token;
     }
 
     /**
