@@ -75,7 +75,7 @@ class Client {
             },
         });
 
-        if (status === 400) {
+        if (status === 404) {
             return null;
         }
 
