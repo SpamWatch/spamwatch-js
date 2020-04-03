@@ -25,6 +25,8 @@ class Client {
      * @param {String} [method='get'] The request method. Defaults to GET
      * @param {Object} [kwargs] Keyword arguments passed to the request method.
      * @returns {Promise<axios.AxiosResponse>} The json response and the request object
+     * @throws {UnauthorizedError} Make sure your token is correct
+     * @throws {ForbiddenError}
      */
     async _makeRequest(path, method = 'get', kwargs) {
         const response = await this._instance.request({
