@@ -22,7 +22,7 @@ class Ban {
     constructor(id, reason, date) {
         this.id = id;
         this.reason = reason;
-        this.date = new Date(date);
+        this.date = new Date(date * 1000);
         this.timestamp = date;
     }
 }
