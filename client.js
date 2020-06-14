@@ -180,6 +180,11 @@ class Client {
             })),
         });
     }
+
+    async stats() {
+        const { data } = await this._makeRequest('stats');
+        return data;
+    }
 }
 
 module.exports = {
