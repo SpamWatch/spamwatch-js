@@ -17,13 +17,17 @@ class Ban {
     /**
      * @param {Number} id
      * @param {String} reason
-     * @param {Number} date
+     * @param {Number} admin
+     * @param {Number} [date=0]
+     * @param {String} [message]
      */
-    constructor(id, reason, date) {
+    constructor(id, reason, admin, date = 0, message) {
         this.id = id;
         this.reason = reason;
         this.date = new Date(date * 1000);
         this.timestamp = date;
+        this.admin = admin;
+        this.message = message;
     }
 }
 
