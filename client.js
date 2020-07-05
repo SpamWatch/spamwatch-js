@@ -66,10 +66,7 @@ class Client {
      */
     async getTokens() {
         const { data } = await this._makeRequest('tokens');
-        return data.map(
-            token =>
-                new Token(token.id, token.permission, token.token, token.userid)
-        );
+        return data.map(token => new Token(token.id, token.permission, token.token, token.userid));
     }
 
     /**
@@ -135,7 +132,7 @@ class Client {
             return false;
         }
 
-        return new Ban(data.id, data.reason, data.date);
+        return new Ban(data.id, data.reason, data.admin, data.date, data.message);
     }
 
     /**
@@ -145,7 +142,7 @@ class Client {
      */
     async getBans() {
         const { data } = await this._makeRequest('banlist');
-        return data.map(ban => new Ban(ban.id, ban.reason, ban.date));
+        return data.map(ban => new Ban(ban.id, ban.reason, ban.admin, ban.date, ban.message));
     }
 
     /**
