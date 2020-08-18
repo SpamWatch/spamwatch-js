@@ -39,6 +39,9 @@ class Client {
             default:
                 return response;
 
+            case 400:
+                throw new UnauthorizedError(response, 'Make sure you provide all required data. Check documentation');
+
             case 401:
                 throw new UnauthorizedError(response, 'Make sure your token is correct');
 
