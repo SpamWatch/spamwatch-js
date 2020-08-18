@@ -66,7 +66,7 @@ class Client {
      */
     async getTokens() {
         const { data } = await this._makeRequest('tokens');
-        return data.map(token => new Token(token.id, token.permission, token.token, token.userid));
+        return data.map(token => new Token(token.id, token.permission, token.token, token.userid, token.retired));
     }
 
     /**
@@ -88,7 +88,7 @@ class Client {
             return null;
         }
 
-        return new Token(data.id, data.permission, data.token, data.userid);
+        return new Token(data.id, data.permission, data.token, data.userid, data.retired);
     }
 
     /**
@@ -97,7 +97,7 @@ class Client {
      */
     async getSelf() {
         const { data } = await this._makeRequest('tokens/self');
-        return new Token(data.id, data.permission, data.token, data.userid);
+        return new Token(data.id, data.permission, data.token, data.userid, data.retired);
     }
 
     /**
@@ -108,8 +108,18 @@ class Client {
      */
     async getToken(tokenid) {
         const { data } = await this._makeRequest(`tokens/${tokenid}`);
-        console.log(data);
-        return new Token(data.id, data.permission, data.token, data.userid);
+        return new Token(data.id, data.permission, data.token, data.userid, data.retired);
+    }
+
+    /**
+     * Get a token using UserID
+     * Requires Root permission
+     * @param {Number} userid The user ID
+     * @returns {Array} The token
+     */
+    async getTokenUser(userid) {
+        const { data } = await this._makeRequest(`tokens/userid/${userid}`);
+        return data.map(token => new Token(token.id, token.permission, token.token, token.userid, token.retired));
     }
 
     /**

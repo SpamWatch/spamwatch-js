@@ -4,12 +4,14 @@ class Token {
      * @param {'Root' | 'Admin' | 'User'} permission
      * @param {String} token
      * @param {Number} userid
+     * @param {Boolean} retired
      */
-    constructor(id, permission, token, userid) {
+    constructor(id, permission, token, userid, retired) {
         this.id = id;
         this.permission = permission;
         this.token = token;
         this.userid = userid;
+        this.retired = retired;
     }
 }
 
