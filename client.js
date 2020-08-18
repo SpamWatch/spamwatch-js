@@ -174,14 +174,21 @@ class Client {
         if (!data) {
             return [];
         }
+        var match = /\r|\n/.exec(data);
 
-        return data.split('\n').map(uid => Number(uid));
+        if (match) {
+            return data.split('\n').map(uid => Number(uid));
+        }else{
+            return [data]
+        }
+        
     }
 
     /**
      * Adds a ban
      * @param {Number} userid ID of the banned user
      * @param {String} reason Reason why the user was banned
+     * @param {String} message message the user was banned for
      */
     async addBan(userid, reason, message) {
         await this._makeRequest('banlist', 'post', {
