@@ -2,6 +2,8 @@ class SpamWatchError extends Error {
     constructor(response, message) {
         super(message);
         this.status = response.status;
+        this.name = this.constructor.name;
+
     }
 }
 
