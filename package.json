@@ -1,6 +1,6 @@
 {
   "name": "spamwatch",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "SpamWatch API Wrapper",
   "main": "index.js",
   "repository": {
