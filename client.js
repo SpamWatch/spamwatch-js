@@ -1,6 +1,11 @@
 const axios = require('axios');
 const { Ban, Token } = require('./types');
-const { UnauthorizedError, ForbiddenError, TooManyRequestsError } = require('./errors');
+const {
+    UnauthorizedError,
+    ForbiddenError,
+    TooManyRequestsError,
+    SpamWatchError,
+} = require('./errors');
 
 class Client {
     /**
@@ -38,6 +43,9 @@ class Client {
         switch (response.status) {
             default:
                 return response;
+
+            case 400:
+                throw new SpamWatchError(response, response.data.reason);
 
             case 401:
                 throw new UnauthorizedError(response, 'Make sure your token is correct');
