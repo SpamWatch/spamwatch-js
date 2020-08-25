@@ -85,15 +85,21 @@ class Client {
      * @returns {Token|null} The created tokern
      */
     async createToken(userid, permission) {
-        const { status, data } = await this._makeRequest('tokens', 'post', {
-            data: {
-                id: userid,
-                permission,
-            },
-        });
+        let data;
 
-        if (status === 400) {
-            return null;
+        try {
+            ({ data } = await this._makeRequest('tokens', 'post', {
+                data: {
+                    id: userid,
+                    permission,
+                },
+            }));
+        } catch (error) {
+            if (error instanceof SpamWatchError && error.status === 400) {
+                return null;
+            }
+
+            throw error;
         }
 
         return new Token(data.id, data.permission, data.token, data.userid, data.retired);

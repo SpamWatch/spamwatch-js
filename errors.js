@@ -3,7 +3,6 @@ class SpamWatchError extends Error {
         super(message);
         this.status = response.status;
         this.name = this.constructor.name;
-
     }
 }
 
