@@ -185,8 +185,14 @@ class Client {
         if (!data) {
             return [];
         }
+        var match = /\r|\n/.exec(data);
 
-        return data.split('\n').map(uid => Number(uid));
+        if (match) {
+            return data.split('\n').map(uid => Number(uid));
+        }else{
+            return [data]
+        }
+        
     }
 
     /**
