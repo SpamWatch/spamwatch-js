@@ -184,6 +184,8 @@ class Client {
 
         if (!data) {
             return [];
+        } else if (typeof data === 'number') {
+            return [data];
         }
 
         return data.split('\n').map(uid => Number(uid));
